@@ -1,0 +1,14 @@
+[program:surveybot]
+command=/home/%(ENV_USER)s/.virtualenvs/survey-bot-env/bin/python /home/%(ENV_USER)s/survey-help2.1/telegram_bot.py
+directory=/home/%(ENV_USER)s/survey-help2.1
+user=%(ENV_USER)s
+autostart=true
+autorestart=true
+stderr_logfile=/home/%(ENV_USER)s/survey-help2.1/logs/supervisor.err.log
+stdout_logfile=/home/%(ENV_USER)s/survey-help2.1/logs/supervisor.out.log
+environment=
+    PYTHONPATH="/home/%(ENV_USER)s/survey-help2.1",
+    GEMINI_API_KEY="%(ENV_GEMINI_API_KEY)s",
+    TELEGRAM_BOT_TOKEN="%(ENV_TELEGRAM_BOT_TOKEN)s"
+stopasgroup=true
+killasgroup=true
