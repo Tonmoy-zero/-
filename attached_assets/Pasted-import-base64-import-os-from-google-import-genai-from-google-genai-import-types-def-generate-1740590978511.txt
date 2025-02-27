@@ -1,0 +1,279 @@
+import base64
+import os
+from google import genai
+from google.genai import types
+
+
+def generate():
+  client = genai.Client(
+      api_key=os.environ.get("GEMINI_API_KEY"),
+  )
+
+  model = "gemini-2.0-flash-lite"
+  contents = [
+      types.Content(
+          role="user",
+          parts=[
+              types.Part.from_text(
+                  text="""you are 1mDC the chatbot who helps with survey. People will ask you about various questions related to survey and you will answer based on data that I give to you. You can also search the internet to come up with answer that are not included in the data.
+
+\"input: Company\",
+  \"output: Manufacturing\",
+  \"input: Company\",
+  \"output: Information technology\",
+  \"input: Company\",
+  \"output: Construction\",
+  \"input: Company\",
+  \"output: Transportation\",
+  \"input: Job description\",
+  \"output: Information technology\",
+  \"input: Job description\",
+  \"output: Human resource\",
+  \"input: company annual revenue\",
+  \"output: 100m - 500m\",
+  \"input: Hispanic or not\",
+  \"output: yes\",
+  \"input: own a car\",
+  \"output: yes\",
+  \"input: Annual income before tax\",
+  \"output: 200000\",
+  \"input: Annual income before tax\",
+  \"output: 150000 - 200000\",
+  \"input: Annual income before tax\",
+  \"output: 175000 - 200000\",
+  \"input: Are you registered to vote?\",
+  \"output: yes\",
+  \"input: pet in house\",
+  \"output: cat & dog\",
+  \"input: do you have any pets in house\",
+  \"output: cat & dog\",
+  \"input: pet\",
+  \"output: cat & dog\",
+  \"input: housing situation\",
+  \"output: homeowner\",
+  \"input: do you own a house\",
+  \"output: yes\",
+  \"input: investable assets\",
+  \"output: more than 500000, less than 999999\",
+  \"input: Job Title\",
+  \"output: CTO\",
+  \"input: Job Responsibility\",
+  \"output: Director\",
+  \"input: Job Title\",
+  \"output: chief technology officer\",
+  \"input: Job Title\",
+  \"output: chief information officer\",
+  \"input: have you participated in any survey before\",
+  \"output: no\",
+  \"input: Please indicate which racial or ethnic categories you most identify with.\",
+  \"output: white\",
+  \"input: Please indicate which racial or ethnic categories you most identify with.\",
+  \"output: hispanic or latino\",
+  \"input: race\",
+  \"output: white\",
+  \"input: race\",
+  \"output: hispanic\",
+  \"input: Are you, or is anyone in your household, employed in any of the following industries?\",
+  \"output: none of the above\",
+  \"input: job sector\",
+  \"output: IT\",
+  \"input: television or streaming service watch per week\",
+  \"output: 20 hours plus\",
+  \"input: video subscription\",
+  \"output: Netflix, hulu, amazon prime, apple tv+, Disney +\",
+  \"input: Music streaming subscriptions\",
+  \"output: youtube music, Spotify\",
+  \"input: movies watched in theatre in the past 12 months\",
+  \"output: 10\",
+  \"input: movies watched in theatre in the past 6 months\",
+  \"output: 4-6\",
+  \"input: movies watched in the past 2 months\",
+  \"output: 1\",
+  \"input: playing video games per week\",
+  \"output: 10-20 hours\",
+  \"input: household yearly income\",
+  \"output: 100000 to 200000\",
+  \"input: TV subscription\",
+  \"output: DishTV, Fios-verizon, Direct tv\",
+  \"input: the highest level of education? \",
+  \"output: postgraduate/Masters/MA\",
+  \"input: Do you suffer from any of these?\",
+  \"output: Type 2 diabetes. COPD, migraine\",
+  \"input: credit score\",
+  \"output: 600 to 799 \",
+  \"input: \",
+  \"output: \",
+  \"input: \",
+  \"output: \",
+  \"input: \",
+  \"output: \",
+  \"input: \",
+  \"output: \",
+  \"input: \",
+  \"output: \",
+
+
+
+
+If you find any question similar to this, you will respond based on the above output. If you find question related to survey that are not included, search the internet to give the right answer.
+
+"""
+              ),
+          ],
+      ),
+      types.Content(
+          role="model",
+          parts=[
+              types.Part.from_text(
+                  text="""Okay, I'm ready to answer survey-related questions based on the provided data and my ability to search the internet.  Ask away!
+"""
+              ),
+          ],
+      ),
+      types.Content(
+          role="user",
+          parts=[
+              types.Part.from_text(
+                  text="""pets"""
+              ),
+          ],
+      ),
+      types.Content(
+          role="model",
+          parts=[
+              types.Part.from_text(
+                  text="""Cat and dog.
+"""
+              ),
+          ],
+      ),
+      types.Content(
+          role="user",
+          parts=[
+              types.Part.from_text(
+                  text="""pet
+"""
+              ),
+          ],
+      ),
+      types.Content(
+          role="model",
+          parts=[
+              types.Part.from_text(
+                  text="""Cat and dog.
+"""
+              ),
+          ],
+      ),
+      types.Content(
+          role="user",
+          parts=[
+              types.Part.from_text(
+                  text="""job"""
+              ),
+          ],
+      ),
+      types.Content(
+          role="model",
+          parts=[
+              types.Part.from_text(
+                  text="""The respondent's job title has been mentioned as CTO, chief technology officer, and chief information officer.  Their job responsibility is listed as Director.  Their job sector is IT.
+"""
+              ),
+          ],
+      ),
+      types.Content(
+          role="user",
+          parts=[
+              types.Part.from_text(
+                  text="""job
+"""
+              ),
+          ],
+      ),
+      types.Content(
+          role="model",
+          parts=[
+              types.Part.from_text(
+                  text="""The respondent's job title has been mentioned as CTO, chief technology officer, and chief information officer. Their job responsibility is listed as Director. Their job sector is IT.
+"""
+              ),
+          ],
+      ),
+      types.Content(
+          role="user",
+          parts=[
+              types.Part.from_text(
+                  text="""cat"""
+              ),
+          ],
+      ),
+      types.Content(
+          role="model",
+          parts=[
+              types.Part.from_text(
+                  text="""The provided data indicates the respondent has cats as pets.
+"""
+              ),
+          ],
+      ),
+      types.Content(
+          role="user",
+          parts=[
+              types.Part.from_text(
+                  text="""fish"""
+              ),
+          ],
+      ),
+      types.Content(
+          role="model",
+          parts=[
+              types.Part.from_text(
+                  text="""I do not have information about fish.
+"""
+              ),
+          ],
+      ),
+      types.Content(
+          role="user",
+          parts=[
+              types.Part.from_text(
+                  text="""gaming"""
+              ),
+          ],
+      ),
+      types.Content(
+          role="model",
+          parts=[
+              types.Part.from_text(
+                  text="""The respondent plays video games for 10-20 hours per week.
+"""
+              ),
+          ],
+      ),
+      types.Content(
+          role="user",
+          parts=[
+              types.Part.from_text(
+                  text="""INSERT_INPUT_HERE"""
+              ),
+          ],
+      ),
+  ]
+  generate_content_config = types.GenerateContentConfig(
+      temperature=1,
+      top_p=0.95,
+      top_k=40,
+      max_output_tokens=8192,
+      response_mime_type="text/plain",
+  )
+
+  for chunk in client.models.generate_content_stream(
+      model=model,
+      contents=contents,
+      config=generate_content_config,
+  ):
+    print(chunk.text, end="")
+
+
+generate()
